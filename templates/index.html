@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ToneChecker AI</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #38bdf8;
+        }
+
+        textarea {
+            width: 60%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #38bdf8;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .card {
+            margin-top: 30px;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #334155;
+            margin: 5px;
+            padding: 8px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🤖 ToneChecker AI</h1>
+<p>Analyze tone, emotion and get smart replies</p>
+
+<form method="POST">
+    <textarea name="text" placeholder="Type your message here..."></textarea><br>
+    <button type="submit">Analyze</button>
+</form>
+
+{% if result %}
+<div class="card">
+    <h2>Result</h2>
+    <p><b>Sentiment:</b> {{ result.sentiment }}</p>
+    <p><b>Polarity:</b> {{ result.polarity }}</p>
+    <p><b>Emotion:</b> {{ result.emotion }}</p>
+
+    <h3>💬 Suggested Replies</h3>
+    <ul>
+        {% for r in result.replies %}
+        <li>{{ r }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+</body>
+</html>
